@@ -5,5 +5,5 @@ from .models import Details
 from .models import Garages
 
 admin.site.register(Cars)
-admin.site.register(Detail)
+admin.site.register(Details)
 admin.site.register(Garages)
