@@ -1,9 +1,9 @@
 from django.contrib import admin
 
-from .models import Cars
-from .models import Details
-from .models import Garages
+from .models import Car
+from .models import Detail
+from .models import Garage
 
-admin.site.register(Cars)
-admin.site.register(Details)
-admin.site.register(Garages)
+admin.site.register(Car)
+admin.site.register(Detail)
+admin.site.register(Garage)

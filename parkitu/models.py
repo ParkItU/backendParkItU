@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Cars(models.Model):
+class Car(models.Model):
     carName = models.CharField(max_length=50)
     carOwner = models.CharField(max_length=50)
     # carImage = models.ImageField(upload_to=)
@@ -9,24 +9,42 @@ class Cars(models.Model):
     def __str__(self):
         return self.carName
 
+    class Meta:
+        verbose_name = "Car"
+        verbose_name_plural = "Cars"
 
-class Details(models.Model):
-    carName = models.CharField(max_length=50)
-    carOwner = models.CharField(max_length=50)
+
+class Garage(models.Model):
+    nameGarage = models.CharField(max_length=100)
+    # imageGarage = models.ImageField(upload_to=)
+
+    def __str__(self):
+        return self.nameGarage
+
+    class Meta:
+        verbose_name = "Garage"
+        verbose_name_plural = "Garages"
+
+
+class Detail(models.Model):
+    carName = models.ForeignKey(
+        Car, on_delete=models.PROTECT, related_name="car_name_details"
+    )
+    carOwner = models.ForeignKey(
+        Car, on_delete=models.PROTECT, related_name="car_owner_details"
+    )
+    nameGarage = models.ForeignKey(
+        Garage, on_delete=models.PROTECT, related_name="name_garage_details"
+    )
     # carImage = models.ImageField(upload_to=)
     licensePlate = models.CharField(max_length=7)
     date = models.DateField()
     firstTime = models.TimeField()
     lastTime = models.TimeField()
-    garageName = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.licensePlate
+        return f"{self.firstTime} ({self.lastTime})"
 
-
-class Garages(models.Model):
-    name = models.CharField(max_length=100)
-    # imageGarage = models.ImageField(upload_to=)
-
-    def __str__(self):
-        return self.name
+    class Meta:
+        verbose_name = "Detail"
+        verbose_name_plural = "Details"
