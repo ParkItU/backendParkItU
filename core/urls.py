@@ -20,9 +20,13 @@ from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
 from parkitu.views import CarsViewSet
+from parkitu.views import GaragesViewSet
+from parkitu.views import DetailsViewSet
 
 router = DefaultRouter()
 router.register(r"cars", CarsViewSet)
+router.register(r"garages", GaragesViewSet)
+router.register(r"details", DetailsViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
