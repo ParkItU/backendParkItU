@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Car(models.Model):
+class Cars(models.Model):
     carName = models.CharField(max_length=50)
     carOwner = models.CharField(max_length=50)
     # carImage = models.ImageField(upload_to=)
@@ -14,37 +14,37 @@ class Car(models.Model):
         verbose_name_plural = "Cars"
 
 
-class Garage(models.Model):
-    nameGarage = models.CharField(max_length=100)
-    # imageGarage = models.ImageField(upload_to=)
+# class Garage(models.Model):
+#     nameGarage = models.CharField(max_length=100)
+#     # imageGarage = models.ImageField(upload_to=)
 
-    def __str__(self):
-        return self.nameGarage
+#     def __str__(self):
+#         return self.nameGarage
 
-    class Meta:
-        verbose_name = "Garage"
-        verbose_name_plural = "Garages"
+#     class Meta:
+#         verbose_name = "Garage"
+#         verbose_name_plural = "Garages"
 
 
-class Detail(models.Model):
-    carName = models.ForeignKey(
-        Car, on_delete=models.PROTECT, related_name="car_name_details"
-    )
-    carOwner = models.ForeignKey(
-        Car, on_delete=models.PROTECT, related_name="car_owner_details"
-    )
-    nameGarage = models.ForeignKey(
-        Garage, on_delete=models.PROTECT, related_name="name_garage_details"
-    )
-    # carImage = models.ImageField(upload_to=)
-    licensePlate = models.CharField(max_length=7)
-    date = models.DateField()
-    firstTime = models.TimeField()
-    lastTime = models.TimeField()
+# class Detail(models.Model):
+#     carName = models.ForeignKey(
+#         Car, on_delete=models.PROTECT, related_name="car_name_details"
+#     )
+#     carOwner = models.ForeignKey(
+#         Car, on_delete=models.PROTECT, related_name="car_owner_details"
+#     )
+#     nameGarage = models.ForeignKey(
+#         Garage, on_delete=models.PROTECT, related_name="name_garage_details"
+#     )
+#     # carImage = models.ImageField(upload_to=)
+#     licensePlate = models.CharField(max_length=7)
+#     date = models.DateField()
+#     firstTime = models.TimeField()
+#     lastTime = models.TimeField()
 
-    def __str__(self):
-        return f"{self.firstTime} ({self.lastTime})"
+#     def __str__(self):
+#         return f"{self.firstTime} ({self.lastTime})"
 
-    class Meta:
-        verbose_name = "Detail"
-        verbose_name_plural = "Details"
+#     class Meta:
+#         verbose_name = "Detail"
+#         verbose_name_plural = "Details"

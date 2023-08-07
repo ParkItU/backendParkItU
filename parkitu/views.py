@@ -2,10 +2,10 @@ from django.shortcuts import render
 
 from rest_framework.viewsets import ModelViewSet
 
-from parkitu.models import Car
-from parkitu.serializers import CarSerializer
+from parkitu.models import Cars
+from parkitu.serializers import CarsSerializer
 
 
-class CarViewSet(ModelViewSet):
-    queryset = Car.objects.all()
-    serializer_class = CarSerializer
+class CarsViewSet(ModelViewSet):
+    queryset = Cars.objects.all()
+    serializer_class = CarsSerializer

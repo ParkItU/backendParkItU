@@ -1,9 +1,10 @@
 from django.contrib import admin
 
-from .models import Car
-from .models import Detail
-from .models import Garage
+from parkitu.models import Cars
 
-admin.site.register(Car)
-admin.site.register(Detail)
-admin.site.register(Garage)
+# from .models import Detail
+# from .models import Garage
+
+admin.site.register(Cars)
+# admin.site.register(Detail)
+# admin.site.register(Garage)
