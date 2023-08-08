@@ -2,9 +2,13 @@ from django.db import models
 
 
 class Cars(models.Model):
-    carName = models.CharField(max_length=50)
-    carOwner = models.CharField(max_length=50)
+    carName = models.CharField(max_length=50, default="Nome do Carro")
+    carOwner = models.CharField(max_length=50, default="Dono do Carro")
+    licensePlate = models.CharField(max_length=7, default="PLaca do Carro")
     # carImage = models.ImageField(upload_to=)
+    # date = models.DateField()
+    firstTime = models.TimeField(default="Horário de entrada")
+    lastTime = models.TimeField(default="Horário de Saída")
 
     def __str__(self):
         return self.carName
@@ -15,8 +19,9 @@ class Cars(models.Model):
 
 
 class Garages(models.Model):
-    nameGarage = models.CharField(max_length=100)
+    nameGarage = models.CharField(max_length=100, default="Nome da Garagem")
     # imageGarage = models.ImageField(upload_to=)
+    adressGarage = models.CharField(max_length=200, blank=True, null=True, default="Endereço da Garagem")
 
     def __str__(self):
         return self.nameGarage
@@ -24,27 +29,3 @@ class Garages(models.Model):
     class Meta:
         verbose_name = "Garage"
         verbose_name_plural = "Garages"
-
-
-class Details(models.Model):
-    carName = models.ForeignKey(
-        Cars, on_delete=models.PROTECT, related_name="car_name_details"
-    )
-    carOwner = models.ForeignKey(
-        Cars, on_delete=models.PROTECT, related_name="car_owner_details"
-    )
-    nameGarage = models.ForeignKey(
-        Garages, on_delete=models.PROTECT, related_name="name_garage_details"
-    )
-    # carImage = models.ImageField(upload_to=)
-    licensePlate = models.CharField(max_length=7)
-    date = models.DateField()
-    firstTime = models.TimeField()
-    lastTime = models.TimeField()
-
-    def __str__(self):
-        return f"{self.firstTime} ({self.lastTime})"
-
-    class Meta:
-        verbose_name = "Detail"
-        verbose_name_plural = "Details"
