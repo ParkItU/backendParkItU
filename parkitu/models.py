@@ -2,13 +2,13 @@ from django.db import models
 
 
 class Cars(models.Model):
-    carName = models.CharField(max_length=50, default="Nome do Carro")
-    carOwner = models.CharField(max_length=50, default="Dono do Carro")
-    licensePlate = models.CharField(max_length=7, default="PLaca do Carro")
+    carName = models.CharField(max_length=50)
+    carOwner = models.CharField(max_length=50, )
+    licensePlate = models.CharField(max_length=7)
     # carImage = models.ImageField(upload_to=)
     # date = models.DateField()
-    firstTime = models.TimeField(default="Horário de entrada")
-    lastTime = models.TimeField(default="Horário de Saída")
+    firstTime = models.TimeField()
+    lastTime = models.TimeField()
 
     def __str__(self):
         return self.carName
@@ -19,9 +19,11 @@ class Cars(models.Model):
 
 
 class Garages(models.Model):
-    nameGarage = models.CharField(max_length=100, default="Nome da Garagem")
+    nameGarage = models.CharField(max_length=100)
     # imageGarage = models.ImageField(upload_to=)
-    adressGarage = models.CharField(max_length=200, blank=True, null=True, default="Endereço da Garagem")
+    adressGarage = models.CharField(
+        max_length=200, blank=True, null=True
+    )
 
     def __str__(self):
         return self.nameGarage
