@@ -1,15 +1,15 @@
 from rest_framework.serializers import ModelSerializer
 
-from parkitu.models import Cars, Garages
+from parkitu.models import Car, Garage
 
 
-class CarsSerializer(ModelSerializer):
+class CarSerializer(ModelSerializer):
     class Meta:
-        model = Cars
+        model = Car
         fields = "__all__"
 
 
-class GaragesSerializer(ModelSerializer):
+class GarageSerializer(ModelSerializer):
     class Meta:
-        model = Garages
+        model = Garage
         fields = "__all__"

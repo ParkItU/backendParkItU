@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from parkitu.models import Cars, Garages
+from parkitu.models import Car, Garage
 
-admin.site.register(Cars)
-admin.site.register(Garages)
+admin.site.register(Car)
+admin.site.register(Garage)

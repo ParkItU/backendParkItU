@@ -19,13 +19,13 @@ from django.urls import include, path
 
 from rest_framework.routers import DefaultRouter
 
-from parkitu.views import CarsViewSet, GaragesViewSet
+from parkitu.views import CarViewSet, GarageViewSet
 
 router = DefaultRouter()
-router.register(r"cars", CarsViewSet)
-router.register(r"garages", GaragesViewSet)
+router.register(r"cars", CarViewSet)
+router.register(r"garages", GarageViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include(router.urls)),
+    path("api/", include(router.urls)),
 ]
