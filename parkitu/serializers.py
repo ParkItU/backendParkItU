@@ -9,6 +9,12 @@ class CarSerializer(ModelSerializer):
         fields = "__all__"
 
 
+# class CarsInGarageSerializer(ModelSerializer):
+#     class Meta:
+#         model = CarsInGarage
+#         fields = "__all__"
+
+
 class GarageSerializer(ModelSerializer):
     class Meta:
         model = Garage

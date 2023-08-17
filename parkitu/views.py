@@ -11,6 +11,11 @@ class CarViewSet(ModelViewSet):
     serializer_class = CarSerializer
 
 
+# class CarsInGarageViewSet(ModelViewSet):
+#     queryset = CarsInGarage.objects.all()
+#     serializer_class = CarsInGarageSerializer
+
+
 class GarageViewSet(ModelViewSet):
     queryset = Garage.objects.all()
     serializer_class = GarageSerializer
