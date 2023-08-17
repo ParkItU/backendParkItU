@@ -33,10 +33,10 @@ class Car(models.Model):
 
 class CarsInGarage(models.Model):
     idCar = models.ForeignKey(
-        Car, on_delete=models.PROTECT, related_name="carsInGarage"
+        Car, on_delete=models.CASCADE, related_name="carsInGarage"
     )
     idGarage = models.ForeignKey(
-        Garage, on_delete=models.PROTECT, related_name="carInGarage"
+        Garage, on_delete=models.CASCADE, related_name="carInGarage"
     )
 
     def __str__(self):
