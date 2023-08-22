@@ -28,6 +28,14 @@ class Garage(models.Model):
     # id = models.BigAutoField(primary_key=True)
     nameGarage = models.CharField(max_length=255)
     adressGarage = models.CharField(max_length=255, blank=True, null=True)
+    imageGarage= models.ForeignKey(
+        Image,
+        related_name="+",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        default=None,
+    )
     # cars = models.ManyToManyField(Car, through="CarsInGarage")
 
     def __str__(self):
