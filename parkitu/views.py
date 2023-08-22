@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.permissions import IsAuthenticated
 
 from parkitu.models import Car, Garage, CarsInGarage
 from parkitu.serializers import CarSerializer, GarageSerializer, CarsInGarageSerializer
@@ -19,3 +20,4 @@ class CarsInGarageViewSet(ModelViewSet):
 class GarageViewSet(ModelViewSet):
     queryset = Garage.objects.all()
     serializer_class = GarageSerializer
+    permission_classes = [IsAuthenticated]

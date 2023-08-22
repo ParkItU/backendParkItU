@@ -1,5 +1,6 @@
 from django.db import models
 
+from uploader.models import Image
 
 class Car(models.Model):
     # id = models.BigAutoField(primary_key=True)
@@ -9,6 +10,14 @@ class Car(models.Model):
     )
     licensePlate = models.CharField(max_length=7)
     dateTime = models.DateTimeField(auto_now=True)
+    imageCar = models.ForeignKey(
+        Image,
+        related_name="+",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        default=None,
+    )
     # garageCar = models.ForeignKey(Garage, on_delete=models.PROTECT, related_name="car")
 
     def __str__(self):
@@ -27,10 +36,6 @@ class Garage(models.Model):
     class Meta:
         verbose_name = "Garage"
         verbose_name_plural = "Garages"
-
-    class Meta:
-        verbose_name = "Car"
-        verbose_name_plural = "Cars"
 
 
 class CarsInGarage(models.Model):
