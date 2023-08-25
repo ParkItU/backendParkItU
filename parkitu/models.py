@@ -2,8 +2,8 @@ from django.db import models
 
 from uploader.models import Image
 
+
 class Car(models.Model):
-    # id = models.BigAutoField(primary_key=True)
     carName = models.CharField(max_length=255)
     carOwner = models.CharField(
         max_length=50,
@@ -18,17 +18,15 @@ class Car(models.Model):
         blank=True,
         default=None,
     )
-    # garageCar = models.ForeignKey(Garage, on_delete=models.PROTECT, related_name="car")
 
     def __str__(self):
         return f"{self.carName} ({self.carOwner} {self.licensePlate} {self.dateTime})"
 
 
 class Garage(models.Model):
-    # id = models.BigAutoField(primary_key=True)
     nameGarage = models.CharField(max_length=255)
     adressGarage = models.CharField(max_length=255, blank=True, null=True)
-    imageGarage= models.ForeignKey(
+    imageGarage = models.ForeignKey(
         Image,
         related_name="+",
         on_delete=models.CASCADE,
@@ -36,7 +34,6 @@ class Garage(models.Model):
         blank=True,
         default=None,
     )
-    # cars = models.ManyToManyField(Car, through="CarsInGarage")
 
     def __str__(self):
         return f"{self.nameGarage} ({self.adressGarage})"
@@ -55,7 +52,7 @@ class CarsInGarage(models.Model):
     )
 
     def __str__(self):
-       return f"{self.idCar} ({self.idGarage})"
+        return f"{self.idCar} ({self.idGarage})"
 
     class Meta:
         verbose_name = "CarsInGarage"

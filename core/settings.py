@@ -11,8 +11,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 import os
-
 from pathlib import Path
+
+from rest_framework import exceptions
+from rest_framework.authentication import BaseAuthentication
+from rest_framework.exceptions import AuthenticationFailed
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -59,10 +62,22 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",
         "rest_framework.permissions.DjangoModelPermissions",
-        # "rest_framework_simplejwt.authentication.JWTAuthentication",
-    ]
-    
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ],
 }
+
+
+class JWTAuthentication(BaseAuthentication):
+    def authenticate(self, request):
+        # Your authentication logic here
+        pass
+
+    def has_permission(self, request, view):
+        # Your permission logic here
+        return True  # Or False based on your logic
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
