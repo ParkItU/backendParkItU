@@ -31,7 +31,7 @@ class CarDetailSerializer(ModelSerializer):
 class CarListSerializer(ModelSerializer):
     class Meta:
         model = Car
-        fields = ["carName", "licensePlate", "dateTime"]
+        fields = "__all__"
 
 
 class CarsInGarageSerializer(ModelSerializer):

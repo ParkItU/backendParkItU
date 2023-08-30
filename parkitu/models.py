@@ -44,9 +44,7 @@ class Garage(models.Model):
 
 
 class CarsInGarage(models.Model):
-    idCar = models.ManyToManyField(
-        Car
-    )
+    idCar = models.ManyToManyField(Car)
     idGarage = models.ForeignKey(
         Garage, on_delete=models.CASCADE, default=0, related_name="carInGarage"
     )
