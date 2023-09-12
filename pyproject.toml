@@ -5,7 +5,7 @@ version = ""
 description = ""
 authors = [{ name = "dudubarbaro", email = "eduardobarbaro.ifc@gmail.com" }]
 dependencies = [
-    "django>=4.2.4",
+    "django>=4.2.5",
     "djangorestframework>=3.14.0",
     "django-extensions>=3.2.3",
     "pydotplus>=2.0.2",
