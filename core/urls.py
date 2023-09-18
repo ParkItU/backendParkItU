@@ -31,12 +31,14 @@ from parkitu.views import CarsInGarageViewSet, CarViewSet, GarageViewSet
 from uploader.router import router as uploader_router
 from usuario.router import router as usuario_router
 from usuario.views import UsuarioViewSet
+from uploader.views import ImageUploadViewSet, DocumentUploadViewSet, CreateViewSet
 
 router = DefaultRouter()
 router.register(r"cars", CarViewSet)
 router.register(r"garages", GarageViewSet)
 router.register(r"carsingarage", CarsInGarageViewSet)
 router.register(r"usuarios", UsuarioViewSet)
+router.register(r"images", ImageUploadViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
