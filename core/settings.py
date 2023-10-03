@@ -26,6 +26,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'cloudinary_storage',
+    'cloudinary',
     "rest_framework_simplejwt",
     "drf_spectacular",
     "usuario",
@@ -85,9 +87,6 @@ WSGI_APPLICATION = "core.wsgi.application"
 
 # print(MODE, DATABASES)
 
-if MODE == "PRODUCTION":
-    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 DATABASES = {
     "default": {
@@ -116,12 +115,6 @@ TIME_ZONE = "America/Sao_Paulo"
 USE_I18N = True
 USE_TZ = True
 
-# if MODE in ["PRODUCTION", "MIGRATE"]:
-#     CLOUDINARY_URL = os.getenv("CLOUDINARY_URL")
-#     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-#     STATIC_ROOT = os.path.join(BASE_DIR, "static")
-#     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CORS_ALLOW_ALL_ORIGINS = True
@@ -140,7 +133,6 @@ SPECTACULAR_SETTINGS = {
 
 AUTH_USER_MODEL = "usuario.Usuario"
 
-MEDIA_URL = "/media/"
 MEDIA_ENDPOINT = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 FILE_UPLOAD_PERMISSIONS = 0o640
@@ -165,4 +157,15 @@ SIMPLE_JWT = {
 #         # Your permission logic here
 #         return True  # Or False based on your logic
 
-STATIC_URL = "static/"
+
+STATIC_URL = "/static/"
+
+if MODE in ["PRODUCTION", "MIGRATE"]:
+    CLOUDINARY_URL = os.getenv("CLOUDINARY_URL")
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+    STATIC_ROOT = os.path.join(BASE_DIR, "static")
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    MEDIA_URL = '/media/' 
+else:    
+    MY_IP = os.getenv("MY_IP", "127.0.0.1")
+    MEDIA_URL = f"http://{MY_IP}:19003/media/"
