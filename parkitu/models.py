@@ -9,7 +9,7 @@ class Car(models.Model):
         max_length=50,
     )
     licensePlate = models.CharField(max_length=7)
-    dateTime = models.DateTimeField(auto_now=True)
+    date = models.DateField(auto_now=True)
     imageCar = models.ForeignKey(
         Image,
         related_name="+",
