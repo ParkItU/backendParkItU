@@ -10,6 +10,7 @@ class Car(models.Model):
     )
     licensePlate = models.CharField(max_length=7)
     date = models.DateField(auto_now=True)
+    carOwnerPhone = models.CharField(max_length=15, default='Seu-valor-padrão-aqui')
     imageCar = models.ForeignKey(
         Image,
         related_name="+",
