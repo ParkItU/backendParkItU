@@ -8,6 +8,7 @@ from .managers import CustomUserManager
 
 
 class Usuario(AbstractUser):
+    
     username = None
     email = models.EmailField(_("e-mail address"), unique=True)
     cpf = models.CharField(_("CPF"), max_length=11, blank=True, null=True)

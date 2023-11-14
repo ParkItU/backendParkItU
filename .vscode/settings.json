@@ -4,7 +4,7 @@
         "--line-length=79"
     ],
     "[python]": {
-        "editor.defaultFormatter": "ms-python.python"
+        "editor.defaultFormatter": "ms-python.black-formatter"
     },
     "workbench.colorCustomizations": {
         "activityBar.activeBackground": "#3399ff",

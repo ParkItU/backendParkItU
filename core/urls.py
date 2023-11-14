@@ -29,9 +29,9 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from parkitu.views import CarsInGarageViewSet, CarViewSet, GarageViewSet
 from uploader.router import router as uploader_router
+from uploader.views import CreateViewSet, DocumentUploadViewSet, ImageUploadViewSet
 from usuario.router import router as usuario_router
 from usuario.views import UsuarioViewSet
-from uploader.views import ImageUploadViewSet, DocumentUploadViewSet, CreateViewSet
 
 router = DefaultRouter()
 router.register(r"cars", CarViewSet)

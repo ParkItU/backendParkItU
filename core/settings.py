@@ -26,8 +26,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'cloudinary_storage',
-    'cloudinary',
+    "cloudinary_storage",
+    "cloudinary",
     "rest_framework_simplejwt",
     "drf_spectacular",
     "usuario",
@@ -87,13 +87,6 @@ WSGI_APPLICATION = "core.wsgi.application"
 
 # print(MODE, DATABASES)
 
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -161,11 +154,20 @@ FILE_UPLOAD_PERMISSIONS = 0o640
 STATIC_URL = "/static/"
 
 if MODE in ["PRODUCTION", "MIGRATE"]:
-    CLOUDINARY_URL = os.getenv("CLOUDINARY_URL")
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-    STATIC_ROOT = os.path.join(BASE_DIR, "static")
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    MEDIA_URL = '/media/' 
-else:    
-    MY_IP = os.getenv("MY_IP", "127.0.0.1")
-    MEDIA_URL = f"http://{MY_IP}:19003/media/"
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.getenv("DATABASE_NAME"),
+            "USER": os.getenv("DATABASE_USER"),
+            "PASSWORD": os.getenv("DATABASE_PASSWORD"),
+            "HOST": os.getenv("DATABASE_HOST"),
+            "PORT": os.getenv("DATABASE_PORT"),
+        }
+    }
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }

@@ -1,6 +1,14 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 
 from uploader.models import Image
+
+
+def validate_carownerphone_length(value):
+    if len(value) > 15:
+        raise ValidationError(
+            "O número de telefone do proprietário do carro deve ter no máximo 15 caracteres."
+        )
 
 
 class Car(models.Model):
@@ -10,7 +18,9 @@ class Car(models.Model):
     )
     licensePlate = models.CharField(max_length=7)
     date = models.DateField(auto_now=True)
-    carOwnerPhone = models.CharField(max_length=15, default='Seu-valor-padrão-aqui')
+    carOwnerPhone = (
+        models.CharField(max_length=15, default="123456789", blank=True),
+    )  # noqa
     imageCar = models.ForeignKey(
         Image,
         related_name="+",
@@ -21,7 +31,7 @@ class Car(models.Model):
     )
 
     def __str__(self):
-        return f"{self.carName} ({self.carOwner} {self.licensePlate} {self.dateTime})"
+        return f"{self.carName} ({self.carOwner} {self.licensePlate})"
 
 
 class Garage(models.Model):
