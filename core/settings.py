@@ -71,23 +71,6 @@ TEMPLATES = [
 WSGI_APPLICATION = "core.wsgi.application"
 
 
-# if MODE in ["PRODUCTION", "MIGRATE"]:
-#     DATABASES = {
-#         "default": {
-#             "ENGINE": "django.db.backends.postgresql",
-#             "NAME": os.getenv("DATABASE_NAME"),
-#             "USER": os.getenv("DATABASE_USER"),
-#             "PASSWORD": os.getenv("DATABASE_PASSWORD"),
-#             "HOST": os.getenv("DATABASE_HOST"),
-#             "PORT": os.getenv("DATABASE_PORT"),
-#         }
-#     }
-# else:
-#     }
-
-# print(MODE, DATABASES)
-
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
