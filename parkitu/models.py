@@ -4,13 +4,6 @@ from django.db import models
 from uploader.models import Image
 
 
-def validate_carownerphone_length(value):
-    if len(value) > 15:
-        raise ValidationError(
-            "O número de telefone do proprietário do carro deve ter no máximo 15 caracteres."
-        )
-
-
 class Car(models.Model):
     carName = models.CharField(max_length=255)
     carOwner = models.CharField(
