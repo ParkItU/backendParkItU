@@ -6,9 +6,8 @@ from uploader.models import Image
 
 class Car(models.Model):
     carName = models.CharField(max_length=255)
-    carOwner = models.CharField(
-        max_length=50,
-    )
+    carOwner = models.CharField(max_length=50)
+    carOwnerPhone = models.CharField(max_length=15)
     licensePlate = models.CharField(max_length=7)
     date = models.DateField(auto_now=True)
     imageCar = models.ForeignKey(
