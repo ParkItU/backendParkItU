@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer, SlugRelatedField
+from rest_framework.serializers import ModelSerializer, SlugRelatedField, CharField
 
 from parkitu.models import Car, CarsInGarage, Garage
 from uploader.models import Image
@@ -6,14 +6,14 @@ from uploader.serializers import ImageSerializer
 
 
 class CarSerializer(ModelSerializer):
-    imageCar_attachment_key = SlugRelatedField(
-        source="imageCar",
+    image_attachment_key = SlugRelatedField(
+        source="image",
         queryset=Image.objects.all(),
         slug_field="attachment_key",
         required=False,
         write_only=True,
     )
-    imageCar = ImageSerializer(required=False, read_only=True)
+    image = ImageSerializer(required=False, read_only=True)
 
     class Meta:
         model = Car
@@ -25,7 +25,7 @@ class CarDetailSerializer(ModelSerializer):
         model = Car
         fields = "__all__"
         depth = 1
-        imageCar = ImageSerializer(required=False)
+        image = ImageSerializer(required=False)
 
 
 class CarListSerializer(ModelSerializer):
@@ -41,29 +41,31 @@ class CarsInGarageSerializer(ModelSerializer):
 
 
 class GarageSerializer(ModelSerializer):
-    imageGarage_attachment_key = SlugRelatedField(
-        source="imageGarage",
+    image_attachment_key = SlugRelatedField(
+        source="image",
         queryset=Image.objects.all(),
         slug_field="attachment_key",
         required=False,
         write_only=True,
     )
-    imageGarage = ImageSerializer(required=False, read_only=True)
+    image = ImageSerializer(required=False, read_only=True)
 
     class Meta:
         model = Garage
-        fields = "__all__"
+        fields = ("id", "nameGarage", "adressGarage", "image", "image_attachment_key")
 
 
 class GarageDetailSerializer(ModelSerializer):
+    image = CharField(source="image.url")
+
     class Meta:
         model = Garage
-        fields = "__all__"
-        depth = 1
-        imageGarage = ImageSerializer(required=False)
+        fields = ("id", "nameGarage", "adressGarage", "image")
 
 
 class GarageListSerializer(ModelSerializer):
+    image = CharField(source="image.url")
+
     class Meta:
         model = Garage
-        fields = ["nameGarage", "adressGarage"]
+        fields = ["nameGarage", "adressGarage", "image"]

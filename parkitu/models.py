@@ -9,7 +9,7 @@ class Car(models.Model):
     carOwner = models.CharField(max_length=50)
     licensePlate = models.CharField(max_length=7)
     date = models.DateField(auto_now=True)
-    imageCar = models.ForeignKey(
+    image = models.ForeignKey(
         Image,
         related_name="+",
         on_delete=models.CASCADE,
@@ -25,7 +25,7 @@ class Car(models.Model):
 class Garage(models.Model):
     nameGarage = models.CharField(max_length=255)
     adressGarage = models.CharField(max_length=255, blank=True, null=True)
-    imageGarage = models.ForeignKey(
+    image = models.ForeignKey(
         Image,
         related_name="+",
         on_delete=models.CASCADE,
