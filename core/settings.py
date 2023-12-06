@@ -95,11 +95,15 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-REST_FRAMEWORK = {
-    # "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.DjangoModelPermissions",),
-    # "DEFAULT_AUTHENTICATION_CLASSES": ("rest_framework_simplejwt.authentication.JWTAuthentication",),
-    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
-}
+# REST_FRAMEWORK = {
+#     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+#     "DEFAULT_AUTHENTICATION_CLASSES": (
+#         "rest_framework_simplejwt.authentication.JWTAuthentication",
+#     ),
+#     "DEFAULT_PERMISSION_CLASSES": (
+#         "rest_framework.permissions.DjangoModelPermissions",
+#     ),
+# }
 
 SPECTACULAR_SETTINGS = {
     "TITLE": "ParkItU API",
@@ -112,27 +116,6 @@ AUTH_USER_MODEL = "usuario.Usuario"
 MEDIA_ENDPOINT = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 FILE_UPLOAD_PERMISSIONS = 0o640
-
-
-# SIMPLE_JWT = {
-#     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=180),
-#     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
-# }
-
-
-# from rest_framework import exceptions
-# from rest_framework.authentication import BaseAuthentication
-# from rest_framework.exceptions import AuthenticationFailed
-
-# class JWTAuthentication(BaseAuthentication):
-#     def authenticate(self, request):
-#         # Your authentication logic here
-#         pass
-
-#     def has_permission(self, request, view):
-#         # Your permission logic here
-#         return True  # Or False based on your logic
-
 
 STATIC_URL = "/static/"
 

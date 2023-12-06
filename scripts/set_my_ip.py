@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
 import contextlib
-import netifaces as ni
 import os
+
+import netifaces as ni
 
 
 # Função para obter o IP do computador

@@ -1,43 +1,25 @@
-from django.shortcuts import render
-
 from rest_framework.viewsets import ModelViewSet
-
-from parkitu.models import Car, CarsInGarage, Garage
-from parkitu.serializers import (
-    CarDetailSerializer,
-    CarListSerializer,
-    CarSerializer,
-    CarsInGarageSerializer,
-    GarageDetailSerializer,
-    GarageListSerializer,
-    GarageSerializer,
-)
+# from rest_framework.permissions import AllowAny, IsAuthenticated
+from parkitu.models import Car, Garage
+from parkitu.serializers import CarSerializer, GarageDetailSerializer, GarageSerializer, CarListSerializer
 
 
 class CarViewSet(ModelViewSet):
     queryset = Car.objects.all()
     serializer_class = CarSerializer
 
-    def get_serializer_class(self):
-        if self.action == "list":
-            return CarListSerializer
-        elif self.action == "retrieve":
-            return CarDetailSerializer
-        return CarSerializer
-
-
-class CarsInGarageViewSet(ModelViewSet):
-    queryset = CarsInGarage.objects.all()
-    serializer_class = CarsInGarageSerializer
+    # def get_serializer_class(self):
+    #     if self.action == "list":
+    #         return [AllowAny()]
+    #     return super().get_serializer_class()
 
 
 class GarageViewSet(ModelViewSet):
     queryset = Garage.objects.all()
     serializer_class = GarageSerializer
+    # permission_classes = [IsAuthenticated]
 
     def get_serializer_class(self):
-        if self.action == "list":
-            return GarageListSerializer
-        elif self.action == "retrieve":
+        if self.action in ["retrieve, list"]:
             return GarageDetailSerializer
-        return GarageSerializer
+        return super().get_serializer_class()

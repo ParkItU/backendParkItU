@@ -1,14 +1,14 @@
-from django.core.exceptions import ValidationError
 from django.db import models
 
 from uploader.models import Image
 
 
 class Car(models.Model):
-    carName = models.CharField(max_length=255)
-    carOwner = models.CharField(max_length=50)
+    name = models.CharField(max_length=255)
+    owner = models.CharField(max_length=50)
+    ownerPhone = models.CharField(max_length=11)
     licensePlate = models.CharField(max_length=7)
-    date = models.DateField(auto_now=True)
+    date = models.DateField()
     image = models.ForeignKey(
         Image,
         related_name="+",
@@ -17,14 +17,15 @@ class Car(models.Model):
         blank=True,
         default=None,
     )
+    garage = models.ForeignKey("Garage", on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.carName} ({self.carOwner} {self.licensePlate})"
+        return f"{self.name} ({self.owner}) ({self.ownerPhone}) ({self.licensePlate}) ({self.date}) ({self.image}) ({self.garage})"
 
 
 class Garage(models.Model):
-    nameGarage = models.CharField(max_length=255)
-    adressGarage = models.CharField(max_length=255, blank=True, null=True)
+    name = models.CharField(max_length=255)
+    address = models.CharField(max_length=255, blank=True, null=True)
     image = models.ForeignKey(
         Image,
         related_name="+",
@@ -33,24 +34,11 @@ class Garage(models.Model):
         blank=True,
         default=None,
     )
+    # car = models.ManyToManyField(Car)
 
     def __str__(self):
-        return f"{self.nameGarage} ({self.adressGarage})"
+        return f"{self.name} ({self.address}) ({self.image})"
 
     class Meta:
         verbose_name = "Garage"
         verbose_name_plural = "Garages"
-
-
-class CarsInGarage(models.Model):
-    idCar = models.ManyToManyField(Car)
-    idGarage = models.ForeignKey(
-        Garage, on_delete=models.CASCADE, default=0, related_name="carInGarage"
-    )
-
-    def __str__(self):
-        return f"{self.idCar} ({self.idGarage})"
-
-    class Meta:
-        verbose_name = "CarsInGarage"
-        verbose_name_plural = "CarsInGarages"
